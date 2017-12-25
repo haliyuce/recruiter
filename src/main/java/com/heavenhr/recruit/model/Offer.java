@@ -1,5 +1,6 @@
 package com.heavenhr.recruit.model;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "offer", uniqueConstraints = @UniqueConstraint(name = "uc_job_title", columnNames = { "jobTitle" }))
 public class Offer {
@@ -28,8 +32,7 @@ public class Offer {
 	private String jobTitle;
     
 	@Column(nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    protected ZonedDateTime startDate;
+    protected LocalDate startDate;
 	
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Application> applications;
@@ -45,6 +48,7 @@ public class Offer {
 		this.applications = new ArrayList<>();
 	}
 	
+	@JsonProperty(access = Access.READ_ONLY)
 	public int getNumberOfApplications() {
 		return this.applications.size();
 	}
@@ -57,11 +61,12 @@ public class Offer {
 		this.jobTitle = jobTitle;
 	}
 
-	public ZonedDateTime getStartDate() {
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(ZonedDateTime startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
@@ -75,6 +80,14 @@ public class Offer {
 	
 	public void applyForJob(Application application) {
 		this.applications.add(application);
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public Boolean getActive() {
+		return active;
 	}
 	
 }

@@ -36,7 +36,9 @@ public class CandidateFacade {
 		Application application = new Application();
 		application.setCandidate(candidate);
 		
-		offer.getApplications().add(application);
+		offer.applyForJob(application);
+		
+		this.offerRepository.save(offer);
 	}
 	
 }

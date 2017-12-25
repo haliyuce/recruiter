@@ -52,10 +52,10 @@ public class CandidateController {
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	@ApiOperation(value = "Candidate application action", consumes="application/json")
 	@ApiImplicitParams({
-        @ApiImplicitParam(name = "candidateId", value = "candidate id", required = false, dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "offerId", value = "offer id", required = false, dataType = "string", paramType = "query")
+        @ApiImplicitParam(name = "candidateId", value = "candidate id", required = false, dataType = "long", paramType = "path"),
+        @ApiImplicitParam(name = "offerId", value = "offer id", required = false, dataType = "long", paramType = "path")
       })
-	public void applyOffer(@PathVariable Long candidateId, @PathVariable Long offerId) {
+	public void applyOffer(@PathVariable long candidateId, @PathVariable long offerId) {
 		this.candidateFacade.applyJob(offerId, candidateId);
 	}
 
