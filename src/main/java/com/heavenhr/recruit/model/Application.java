@@ -13,20 +13,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Application {
-	
-    @Id
-    @GeneratedValue
-    private Long id;
-    
-    @OneToOne(cascade = CascadeType.MERGE)
-    private Candidate candidate;
-    
-    @Column
-    private ApplicationStatus status;
-    
-    @Column(nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    protected ZonedDateTime applicationDate = ZonedDateTime.now();
+
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@OneToOne(cascade = CascadeType.MERGE)
+	private Candidate candidate;
+
+	@Column
+	private ApplicationStatus status = ApplicationStatus.APPLIED;
+
+	@Column(nullable = false)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	protected ZonedDateTime applicationDate = ZonedDateTime.now();
 
 	public Candidate getCandidate() {
 		return candidate;
@@ -46,6 +46,10 @@ public class Application {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public String getCandidateEmail() {
+		return this.candidate.getEmail();
 	}
 
 }
