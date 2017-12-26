@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.heavenhr.recruit.model.ApplicationStatus;
+
 @Entity
 public class Application {
 
@@ -20,7 +22,7 @@ public class Application {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Candidate candidate;
 
 	@Enumerated(EnumType.STRING)

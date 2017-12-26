@@ -48,9 +48,9 @@ public class CandidateController {
 		return this.candidateFacade.getAllCandidates();
 	}
 	
-	@PutMapping("/{candidateId}/{offerId}")
+	@PutMapping("/apply/{candidateId}/{offerId}")
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	@ApiOperation(value = "Candidate application action", consumes="application/json")
+	@ApiOperation(value = "Candidate offer apply action", consumes="application/json")
 	@ApiImplicitParams({
         @ApiImplicitParam(name = "candidateId", value = "candidate id", required = false, dataType = "long", paramType = "path"),
         @ApiImplicitParam(name = "offerId", value = "offer id", required = false, dataType = "long", paramType = "path")

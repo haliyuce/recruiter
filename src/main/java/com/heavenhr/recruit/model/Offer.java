@@ -17,6 +17,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -34,7 +35,7 @@ public class Offer {
 	@Column(nullable = false)
     protected LocalDate startDate;
 	
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Application> applications;
 	
     @Column(nullable = false)
@@ -62,6 +63,7 @@ public class Offer {
 	}
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	public LocalDate getStartDate() {
 		return startDate;
 	}

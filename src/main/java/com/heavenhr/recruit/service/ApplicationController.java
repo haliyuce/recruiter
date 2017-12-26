@@ -38,12 +38,14 @@ public class ApplicationController {
 			throw new EntityNotFoundException("Application id is invalid");
 		}
 		
-		if(application.getStatus().name().equals(newstatus)) {
+		if(application.getStatus().name().equals(newstatus.name())) {
 			return; // no op
 		}
 		
 		application.setStatus(newstatus);
 		this.applicationFacade.update(application);
+		
+		newstatus.getActionInstance().notify(application.getCandidate());
 		
 	}
 

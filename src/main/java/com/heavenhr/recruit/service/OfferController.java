@@ -53,7 +53,7 @@ public class OfferController {
 		this.offerFacade.createOrUpdate(offer);
 	}
 	
-	@GetMapping("/application/{offerId}/{applicationId}")
+	@GetMapping("/{offerId}/application/{applicationId}")
 	@ApiOperation(value = "Get one specific application belongs to the offer", consumes="application/json")
 	@ApiImplicitParams({
         @ApiImplicitParam(name = "offerId", value = "offer id", required = false, dataType = "long", paramType = "path"),
@@ -75,7 +75,7 @@ public class OfferController {
 		return response.get(0);
 	}
 	
-	@GetMapping("/application/{offerId}")
+	@GetMapping("/{offerId}/application")
 	@ApiOperation(value = "Get all applications of a specific offer", consumes="application/json")
 	@ApiImplicitParams({
         @ApiImplicitParam(name = "offerId", value = "offer id", required = false, dataType = "long", paramType = "path")
