@@ -23,4 +23,8 @@ public class OfferFacade {
 		this.offerRepository.save(offer);
 	}
 
+	public Offer getOffer(long offerId) {
+		return this.offerRepository.findOne(offerId);
+	}
+
 }

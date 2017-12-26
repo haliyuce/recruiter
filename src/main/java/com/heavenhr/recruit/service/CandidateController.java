@@ -59,4 +59,5 @@ public class CandidateController {
 		this.candidateFacade.applyJob(offerId, candidateId);
 	}
 
+
 }

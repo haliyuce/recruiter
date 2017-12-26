@@ -5,6 +5,8 @@ import java.time.ZonedDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -21,7 +23,7 @@ public class Application {
 	@OneToOne(cascade = CascadeType.MERGE)
 	private Candidate candidate;
 
-	@Column
+	@Enumerated(EnumType.STRING)
 	private ApplicationStatus status = ApplicationStatus.APPLIED;
 
 	@Column(nullable = false)
