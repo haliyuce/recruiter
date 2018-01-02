@@ -5,6 +5,7 @@ import com.heavenhr.recruit.model.status.AppliedStatusNotifier;
 /**
  * 
  * the enum values are notifiers also so each status knows what to call for notification
+ * TODO: I have put all of them as AppliesStatusNotfier , which is wrong. That should vary based on the status like HşredStatusNotifier etc..
  *
  */
 public enum ApplicationStatus {
